@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="tr">
+    
+    
+    
+    
+    
+    
+    
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" type="text/css" href="fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        
+<script src="jquery-3.3.1.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+      
+        <style>.container {font-size:14px;}
+            .btn-xs {padding:2px; font-size:12px;}</style>
+        
+        
+    </head>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <title>
+        Tek Eğimli Çatılara Etkiyen Rüzgar Yükleri 
+    </title>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <body>
+        
+        <!-- NAVIGATION BAR -->
+        <br>
+        <div class="container text-center">
+            <nav class="navbar nav-pills fixed-top text-center">
+                
+                        
+                    
+                      
+                                <a  data-toggle="tab" class="nav-link  text-center ml-auto mr-auto" href="#">Tek Eğimli Çatılara Etkiyen Rüzgar Yükleri</a>
+                           
+                           
+                       
+                    
+                </nav>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- POPUPS -->
+        
+        <div class="modal fade align-middle" id="popup-mskmh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog align-middle" role="document">
+                <div class="modal-content align-middle">
+                    <div class="modal-body align-middle mr-2 ml-2">
+                       
+                                                                        <div class="container align-middle">
+                                                                <table class="table align-middle text-center">
+                                                                <tbody>
+                                                              <tr>
+                                                            <td>
+                                                                   <select id="birimsec" class="custom-select custom-select-sm">
+                                                                        <option value="0">km/sa&nbsp&nbsp&nbsp==>&nbsp&nbsp&nbsp m/sn</option>
+                                                                        <option value="1">m/sn&nbsp&nbsp&nbsp&nbsp==>&nbsp&nbsp&nbsp km/h</option>
+                                                                        </select>
+                                                                  </td>
+                                                            </tr>
+
+                                                                              <tr>
+                                                            <td><input style="text-align: center;" class="ml-auto mr-auto form-control  form-control-sm" id="brr" min="0" type="number" value=""></td>
+                                                            </tr>
+                                                                            
+                                                                    
+                                                                    <tr><td class="align-middle mx-auto">
+                                                                        <button type="button" class="btn btn-secondary mx-auto" onclick="mskmh()">Çevir</button></td>
+                                                                    </tr>
+                                                                    
+                                                                     <tr><td class="align-middle mx-auto">
+                                                                        <br><br><output id="birimsonuc" readonly=""></output></td>
+                                                                    </tr>
+                                                                                                                                        
+                                                                    
+                                                                    </tbody></table>
+                                                                         
+                                                                  
+                                                                            
+                                                                 <br>
+                                                                <br>
+                                                                <br>
+                                                            </div>
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+          <div class="modal fade align-middle" id="popup-arrazi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog align-middle" role="document">
+                <div class="modal-content align-middle">
+                    <div class="modal-body align-middle">
+                       
+                                                                        <div class="container align-middle">
+                                                                <table class="table align-middle text-center">
+                                                                <tbody>
+                                                                    <tr>
+                                                                    <td id="on">0</td>
+                                                                    <td id="off2">Açık deniz etkisine maruz deniz veya kıyı alanı</td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                    <td id="on">I</td>
+                                                                    <td id="off2">Göller veya ihmal edilebilecek seviyede bitki örtüsü olan ve engebeli
+olmayan düz ve yatay alan</td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                    <td id="on">II</td>
+                                                                    <td id="off2">Çayır gibi az seviyede bitki örtüsü olan ve aralarında en az engel
+yüksekliğinin 20 katı kadar mesafe bulunan engellere (ağaçlar, binalar)
+sahip alan</td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                    <td id="on">III</td>
+                                                                    <td id="off2">Düzgün yayılı şekilde bir bitki örtüsüne veya binalara veya aralarında en
+az engel yüksekliğinin 20 katı kadar mesafe bulunan engellere sahip alan
+(kasabalar, yörekent, ormanlık alan gibi)</td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                    <td id="on">IV</td>
+                                                                    <td id="off2">Yüzeyinin en az % 15’i, yükseklik ortalaması 15 m’yi aşan binalarla kaplı
+alan</td>
+                                                                    </tr>
+
+                                                                    
+                                                                    </tbody></table>
+                                                                         
+                                                                  
+                                                                            
+                                                                
+                                                            </div>
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+ 
+        <div class="modal fade align-middle" id="popup-ccpp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog align-middle" role="document">
+                <div class="modal-content align-middle">
+                    <div class="modal-body align-middle">
+                       
+                                                                        <div class="container align-middle">
+                                                                <table class="table align-middle text-center">
+                                                                <tbody>
+                                                                    <tr>
+                                                                    <td id="on">cpe,1 değerleri cephe ve çatı kaplama elemanları gibi alanı 1 m2 veya daha az olan küçük elemanlar
+ve sabitleme elemanlarının tasarımında kullanılmak üzere dikkate alınır. cpe,10 değerleri binanın yük
+taşıyıcı kısmının tamamının tasarımında kullanılabilir.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td id="on">Kaynak : TS EN 1991-1-4    7.2.1 Not 1</td>
+                                                                    </tr>
+                                     
+
+                                                                    
+                                                                    </tbody></table>
+                                                                         
+                                                                  
+                                                                            
+                                                                 <br>
+                                                                <br>
+                                                                <br>
+                                                            </div>
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--MAIN PAGE CONTENTS -->
+        
+        <div class="container align-middle text-center" style="margin-top:100px">
+            <table class="table align-middle text-center"><tbody>
+                <tr><img class="img-fluid mx-auto" src="rz1.png"></tr>
+                <tr><img class="img-fluid mx-auto" src="rz2.png"></tr>
+                <tr><img class="img-fluid mx-auto" src="rz3.png"></tr>
+                <tr><img class="img-fluid mx-auto" src="rz4.png"></tr>
+                
+            </tbody></table>
+        </div>
+        
+        
+         <div class="container" style="margin-top:100px" id="asikform">
+             <table class="table align-middle text-center">
+                                                                <tbody>
+             <tr><div class="row mt-4 mb-4">
+                <div class="col text-left">
+                    <b>h (m)</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <input type="number" class="form-control-sm form-control" value="" id="z" min="0">
+                       
+                </div>
+            </div></tr>
+             
+          <tr><div class="row mt-4 mb-4">
+                <div class="col text-left">
+                    <b>Esas Rüzgar Hızı (v<sub>b</sub>) (m/sn)</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <input type="number" class="form-control form-control-sm" value="" id="vb" min="0">
+                        <button 
+                                class="btn btn-outline-secondary info btn-xs" 
+                                type="button" 
+                                data-toggle="modal" 
+                                data-target="#popup-mskmh">?
+                        </button>
+                </div>
+            </div></tr>
+             
+              <tr><div class="row mt-4 mb-4">
+                <div class="col text-left">
+                    <b>Arazi Kategorisi</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <select id="arazikat" class="custom-select custom-select-sm">
+                    <option value="0">0</option>
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                    </select>
+                    <button 
+                                class="btn btn-outline-secondary info btn-xs" 
+                                type="button" 
+                                data-toggle="modal" 
+                                data-target="#popup-arrazi">?
+                        </button>
+                </div>
+             </div></tr>
+             
+             
+             
+
+             
+             <tr><div class="row mt-4 mb-4">
+                <div class="col text-left">
+                    <b>Basınç Uygulanacak Alan</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <select id="basalan" class="custom-select custom-select-sm">
+                    <option value="0">Cephe ve Çatı Kaplama Elemanları</option>
+                    <option value="1">Yapı Taşıyıcı Sistemi</option>
+                    </select>
+                    <button 
+                                class="btn btn-outline-secondary info btn-xs" 
+                                type="button" 
+                                data-toggle="modal" 
+                                data-target="#popup-ccpp">?
+                        </button>
+                </div>
+             </div></tr>
+                                                                    
+                                                                     <tr><div class="row mt-4 mb-4">
+                <div class="col text-left">
+                    <b>Rüzgar Yönü</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <select id="ruzgaryonu" class="custom-select custom-select-sm">
+                    <option value="0">θ = 0</option>
+                    <option value="1">θ = 90</option>
+                    <option value="2">θ = 180</option>
+                    </select>
+                   
+                </div>
+             </div></tr>
+                                                                    
+                                                                    <tr><div class="row mt-4 mb-4">
+                <div class="col text-left">
+                    <b>Çatı Eğimi (%)</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <input type="number" class="form-control  form-control-sm" value="" id="egim" min="0">
+                        
+                </div>
+            </div></tr>
+             
+             <tr><div class="row mt-4 mb-4">
+                <div class="col text-left">
+                    <b>b (m)</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <input type="number" class="form-control  form-control-sm" value="" id="bb" min="0">
+                        
+                </div>
+            </div></tr>
+             
+             <tr><div class="row mt-3 mb-3">
+                <div class="col text-left">
+                    <b>d (m)</b>
+                </div>
+                <div class="col" style="display: flex">
+                    <input type="number" class="form-control  form-control-sm" value="" id="dd" min="0">
+                       
+                </div>
+            </div></tr>
+             
+             
+                 </tbody></table>
+        
+         </div>
+        
+        
+        
+        
+        
+        
+        <!-- BUTTON -->
+        
+        <div class="container">
+            <div style="text-align:center;" class="row">
+                <div class="col mt-3 mb-4">
+                    <button onclick="hesaplar()" class="btn btn-outline-danger" id="butonasik">Hesapla</button>
+                    </div>
+            </div>
+        </div>
+
+
+        
+        <script language="javascript">
+                function mskmh(){
+                    
+    
+               
+                    var brrkontrol=document.getElementById("brr");
+                    var birimsec=parseFloat(document.getElementById("birimsec").value);
+                    var brr=parseFloat(document.getElementById("brr").value);
+                    
+                    
+                    
+                    if (brrkontrol.value.length != 0 && birimsec==0) {
+                        document.getElementById("birimsonuc").value=(brr/3.6).toFixed(2);
+                        
+                    }
+                    
+                    else if (brrkontrol.value.length != 0 && birimsec==1) {
+                        document.getElementById("birimsonuc").value=(brr*3.6).toFixed(2);
+                    }
+                    
+                    else if (brrkontrol.value.length == 0 && birimsec==1) {
+                        document.getElementById("birimsonuc").value="Lütfen Bir Değer Giriniz!";
+                    }
+                    
+                    else if (brrkontrol.value.length == 0 && birimsec==0) {
+                        document.getElementById("birimsonuc").value="Lütfen Bir Değer Giriniz!";
+                    }
+                    
+                }
+            
+        </script>
+        
+         
+        
+        
+        
+        
+        <script language="javascript">
+                function hesaplar(){
+
+
+                // matrisler
+
+                var z00=[0.003,0.01,0.05,0.3,1];
+                var	zminn=[1,1,2,5,10];
+                
+               
+                    
+                    //Deger atamalari	
+                
+                var vbkontrol = document.getElementById('vb');    
+                var zkontrol = document.getElementById('z');    
+                var bbkontrol = document.getElementById('bb');    
+                var ddkontrol = document.getElementById('dd');    
+                var egimkontrol = document.getElementById('egim');    
+                    
+                var arazikat=parseFloat(document.getElementById("arazikat").value);
+                var vb=parseFloat(document.getElementById("vb").value);
+                var z=parseFloat(document.getElementById("z").value);
+                var bbb=parseFloat(document.getElementById("bb").value);
+                var ddd=parseFloat(document.getElementById("dd").value);
+                var cpe=parseFloat(document.getElementById("basalan").value);
+                var teta=parseFloat(document.getElementById("ruzgaryonu").value);
+                var egim=parseFloat(document.getElementById("egim").value);
+                
+                    if (vbkontrol.value.length == 0 || zkontrol.value.length == 0 || bbkontrol.value.length == 0 || ddkontrol.value.length == 0 ) {
+                        
+                document.getElementById("tepebas").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("vmm").value="Tüm Alanları Doldurunuz!";
+                    
+                document.getElementById("f1").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("f2").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("g1").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("g2").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("h1").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("h2").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("i1").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("i2").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("fyk").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("fak").value="Tüm Alanları Doldurunuz!";
+                        
+                document.getElementById("f1z").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("f2z").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("f3z").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("g1z").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("g2z").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("h1z").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("h2z").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("iz").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("fyz").value="Tüm Alanları Doldurunuz!";
+                document.getElementById("faz").value="Tüm Alanları Doldurunuz!";
+           
+                        
+                    }
+                    
+                    else {
+                    
+                    
+                    
+                
+                    
+                 //matris cekimleri   
+                var z0=parseFloat(z00[arazikat]);
+                var zmin=parseFloat(zminn[arazikat]);
+               
+                
+             
+
+                
+
+                
+
+
+
+
+
+                //HESAPLAR
+                //Beton Ezilme Dayanımı
+                
+                var alfad=Math.atan(egim/100);
+                var alfa=alfad*(180/Math.PI);
+                        
+
+                var kr=0.19*(Math.pow((z0/0.05),0.07));
+                if (z>=zmin) {
+                    
+                    var cr=kr*Math.log(z/z0);
+                }
+                    
+                else if (z<zmin) {
+                    
+                    var cr=kr*Math.log(zmin/z0);
+                }
+                    
+                    var c0=1;
+                    var vm=cr*vb*c0;
+                    
+                if (z>=zmin) {
+                    
+                    var lv=1/(Math.log(z/z0));
+                }
+                    
+                else if (z<zmin) {
+                    
+                    var lv=1/(Math.log(zmin/z0));
+                }
+                    
+                var qp=(1+7*lv)*0.5*1.25*vm*vm;
+                var tepbas=qp/9.8065;
+                        
+                        
+                 if (teta==0 || teta==2) {
+                     var bb=bbb;
+                     var dd=ddd;
+                     
+                 }       
+                        
+                    else if (teta==1) {
+                        var bb=ddd;
+                        var dd=bbb;
+                        
+                    }
+                        
+                        
+                    
+                var e=Math.min(bb,2*z);
+                    
+                if (teta==0) {
+                    
+                    if (alfa<=5) {
+                        
+                        var f10_b=0;
+                        var f1_b=0;
+                        var f10_c=-1.7;
+                        var f1_c=-2.5;
+                        
+                        var g10_b=0;
+                        var g1_b=0;
+                        var g10_c=-1.2;
+                        var g1_c=-2;
+                        
+                        var h10_b=0;
+                        var h1_b=0;
+                        var h10_c=-0.6;
+                        var h1_c=-1.2;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                              
+                    }
+                    
+                    else if (alfa>5 &&  alfa<10) {
+                        
+                        var f10_c=(((alfa-5)*(0.8))/5)-1.7;
+                        var f1_c=(((alfa-5)*(0.5))/5)-2.5;
+                        var f10_b=(((alfa-5)*(0.2))/5);
+                        var f1_b=(((alfa-5)*(0.2))/5);
+                        
+                        var g10_c=(((alfa-5)*(0.4))/5)-1.2;
+                        var g1_c=(((alfa-5)*(0.5))/5)-2;
+                        var g10_b=(((alfa-5)*(0.2))/5);
+                        var g1_b=(((alfa-5)*(0.2))/5);
+                        
+                        var h10_c=(((alfa-5)*(0.3))/5)-0.6;
+                        var h1_c=(((alfa-5)*(0.9))/5)-1.2;
+                        var h10_b=(((alfa-5)*(0.2))/5);
+                        var h1_b=(((alfa-5)*(0.2))/5);
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa==10) {
+                        
+                        var f10_c=-0.9;
+                        var f1_c=-2;
+                        var f10_b=0.2;
+                        var f1_b=0.2;
+                        
+                        var g10_c=-0.8;
+                        var g1_c=-1.5;
+                        var g10_b=0.2;
+                        var g1_b=0.2;
+                        
+                        var h10_c=-0.3;
+                        var h1_c=-0.3;
+                        var h10_b=0.2;
+                        var h1_b=0.2;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>10 && alfa<30) {
+                        
+                        var f10_c=(((alfa-10)*(0.4))/20)-0.9;
+                        var f1_c=(((alfa-10)*(0.5))/20)-2;
+                        
+                        var f10_b=(((alfa-10)*(0.5))/20)+0.2;
+                        var f1_b=(((alfa-10)*(0.5))/20)+0.2;
+                        
+                        
+                        
+                        var g10_c=(((alfa-10)*(0.3))/20)-0.8;
+                        var g1_c=-1.5;
+                        
+                        var g10_b=(((alfa-10)*(0.5))/20)+0.2;
+                        var g1_b=(((alfa-10)*(0.5))/20)+0.2;
+                        
+                        
+                        
+                        var h10_c=(((alfa-10)*(0.1))/20)-0.3;
+                        var h1_c=(((alfa-10)*(0.1))/20)-0.3;
+                        
+                        var h10_b=(((alfa-10)*(0.2))/20)+0.2;
+                        var h1_b=(((alfa-10)*(0.2))/20)+0.2;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa==30) {
+                        
+                        var f10_c=-0.5;
+                        var f1_c=-1.5;
+                        var f10_b=0.7;
+                        var f1_b=0.7;
+                        
+                        var g10_c=-0.5;
+                        var g1_c=-1.5;
+                        var g10_b=0.7;
+                        var g1_b=0.7;
+                        
+                        var h10_c=-0.2;
+                        var h1_c=-0.2;
+                        var h10_b=0.4;
+                        var h1_b=0.4;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>30 && alfa<45) {
+                        
+                        var f10_c=(((alfa-30)*(0.5))/15)-0.5;
+                        var f1_c=(((alfa-30)*(1.5))/15)-1.5;
+                        
+                        var g10_c=(((alfa-30)*(0.5))/15)-0.5;
+                        var g1_c=(((alfa-30)*(1.5))/15)-1.5;
+                        
+                        var h10_c=(((alfa-30)*(0.2))/15)-0.2;
+                        var h1_c=(((alfa-30)*(0.2))/15)-0.2;
+                        
+                        
+                        
+                        
+                        var f10_b=0.7;
+                        var f1_b=0.7;
+                        
+                        var g10_b=0.7;
+                        var g1_b=0.7;
+                        
+                        var h10_b=(((alfa-30)*(0.2))/15)+0.4;
+                        var h1_b=(((alfa-30)*(0.2))/15)+0.4;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                        
+                    }
+                    
+                    else if (alfa==45) {
+                        
+                        var f10_c=0;
+                        var f1_c=0;
+                        
+                        var g10_c=0;
+                        var g1_c=0;
+                        
+                        var h10_c=0;
+                        var h1_c=0;
+                        
+                        
+                        
+                        
+                        var f10_b=0.7;
+                        var f1_b=0.7;
+                        
+                        var g10_b=0.7;
+                        var g1_b=0.7;
+                        
+                        var h10_b=0.6;
+                        var h1_b=0.6;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>45 && alfa<60)  {
+                        
+                        var f10_c=(((alfa-45)*(0.7))/15);
+                        var f1_c=(((alfa-45)*(0.7))/15);
+                        
+                        var g10_c=(((alfa-45)*(0.7))/15);
+                        var g1_c=(((alfa-45)*(0.7))/15);
+                        
+                        var h10_c=(((alfa-45)*(0.7))/15);
+                        var h1_c=(((alfa-45)*(0.7))/15);
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa==60) {
+                        
+                        var f10_c=0.7;
+                        var f1_c=0.7;
+                        
+                        var g10_c=0.7;
+                        var g1_c=0.7;
+                        
+                        var h10_c=0.7;
+                        var h1_c=0.7;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>60 && alfa<75) {
+                        
+                        var f10_c=(((alfa-60)*(0.1))/15)+0.7;
+                        var f1_c=(((alfa-60)*(0.1))/15)+0.7;
+                        
+                        var g10_c=(((alfa-60)*(0.1))/15)+0.7;
+                        var g1_c=(((alfa-60)*(0.1))/15)+0.7;
+                        
+                        var h10_c=(((alfa-60)*(0.1))/15)+0.7;
+                        var h1_c=(((alfa-60)*(0.1))/15)+0.7;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                            
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    
+                                  }
+                    
+                    else if (alfa>=75) {
+                        
+                        var f10_c=0.8;
+                        var f1_c=0.8;
+                        
+                        var g10_c=0.8;
+                        var g1_c=0.8;
+                        
+                        var h10_c=0.8;
+                        var h1_c=0.8;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                        
+                        
+                }
+                        
+                else if (teta==2) {
+                    if (alfa<=5) {
+                        var f10_c=-2.3;
+                        var f1_c=-2.5;
+                        
+                        var g10_c=-1.3;
+                        var g1_c=-2;
+                        
+                        var h10_c=-0.8;
+                        var h1_c=-1.2;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>5 && alfa<10) {
+                        
+                        var f10_c=(((alfa-5)*(-0.2))/5)-2.3;
+                        var f1_c=(((alfa-5)*(-0.3))/5)-2.5;
+                        
+                        var g10_c=-1.3;
+                        var g1_c=-2;
+                        
+                        var h10_c=(((alfa-5)*(-0.1))/5)-0.8;
+                        var h1_c=-1.2;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                        
+                    }
+                    
+                    else if (alfa==10) {
+                        
+                        var f10_c=-2.5;
+                        var f1_c=-2.8;
+                        
+                        var g10_c=-1.3;
+                        var g1_c=-2;
+                        
+                        var h10_c=-0.9;
+                        var h1_c=-1.2;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>10 && alfa<30) {
+                        
+                        var f10_c=(((alfa-10)*(1.4))/20)-2.5;
+                        var f1_c=(((alfa-10)*(0.5))/20)-2.8;
+                        
+                        var g10_c=(((alfa-10)*(0.5))/20)-1.3;
+                        var g1_c=(((alfa-10)*(0.5))/20)-2;
+                        
+                        var h10_c=((((alfa-10)*(0.1))/20))-0.9;
+                        var h1_c=(((alfa-10)*(0.4))/20)-1.2;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa==30) {
+                        
+                        var f10_c=-1.1;
+                        var f1_c=-2.3;
+                        
+                        var g10_c=-0.8;
+                        var g1_c=-1.5;
+                        
+                        var h10_c=-0.8;
+                        var h1_c=-0.8;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>30 && alfa<45) {
+                        
+                        var f10_c=(((alfa-30)*(0.5))/15)-1.1;
+                        var f1_c=(((alfa-30)*(1))/15)-2.3;
+                        
+                        var g10_c=(((alfa-30)*(0.3))/15)-0.8;
+                        var g1_c=(((alfa-30)*(1))/15)-1.5;
+                        
+                        var h10_c=((((alfa-30)*(0.1))/15))-0.8;
+                        var h1_c=(((alfa-30)*(0.1))/15)-0.8;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa==45) {
+                        
+                        var f10_c=-0.6;
+                        var f1_c=-1.3;
+                        
+                        var g10_c=-0.5;
+                        var g1_c=-0.5;
+                        
+                        var h10_c=-0.7;
+                        var h1_c=-0.7;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>45 && alfa<60) {
+                        
+                        var f10_c=(((alfa-45)*(0.1))/15)-0.6;
+                        var f1_c=(((alfa-45)*(0.3))/15)-1.3;
+                        
+                        var g10_c=-0.5;
+                        var g1_c=-0.5;
+                        
+                        var h10_c=((((alfa-45)*(0.2))/15))-0.7;
+                        var h1_c=(((alfa-45)*(0.2))/15)-0.7;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                                                
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    }
+                    
+                    else if (alfa>=60) {
+                        
+                        var f10_c=-0.5;
+                        var f1_c=-1;
+                        
+                        var g10_c=-0.5;
+                        var g1_c=-0.5;
+                        
+                        var h10_c=-0.5;
+                        var h1_c=-0.5;
+                        
+                        
+                        
+                        
+                        var f10_b=31693169;
+                        var f1_b=31693169;
+                        
+                        var g10_b=31693169;
+                        var g1_b=31693169;
+                        
+                        var h10_b=31693169;
+                        var h1_b=31693169;
+                                                    
+                            var i1_c=31693169;
+                            var i1_b=31693169;
+                            var i10_c=31693169;
+                            var i10_b=31693169;
+                        
+                        var fy10=31693169;
+                        var fy1=31693169;
+                        var fa10=31693169;
+                        var fa1=31693169;
+                    } 
+                    
+                }
+                        
+                    else if (teta==1) {
+                        
+                        if (alfa<=5){
+                            
+                            var fy10=-2.1;
+                            var fy1=-2.6;
+                            
+                            var fa10=-2.1;
+                            var fa1=-2.4;
+
+                            var g10_c=-1.8;
+                            var g1_c=-2;
+
+                            var h10_c=-0.6;
+                            var h1_c=-1.2;
+                            
+                            var i10_c=-0.5;
+                            var i1_c=-0.5;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                            
+                            
+                        }
+                        
+                        else if (alfa>5 && alfa<15){
+                            
+                            var fy10=(((alfa-5)*(-0.3))/10)-2.1;
+                            var fy1=(((alfa-5)*(-0.3))/10)-2.6;
+                            
+                            var fa10=(((alfa-5)*(0.5))/10)-2.1;
+                            var fa1=-2.4;
+
+                            var g10_c=(((alfa-5)*(-0.1))/10)-1.8;
+                            var g1_c=(((alfa-5)*(-0.5))/10)-2;
+
+                            var h10_c=(((alfa-5)*(-0.2))/10)-0.6;
+                            var h1_c=-1.2;
+                            
+                            var i10_c=(((alfa-5)*(-0.2))/10)-0.5;
+                            var i1_c=(((alfa-5)*(-0.7))/10)-0.5;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa==15) {
+                            
+                            var fy10=-2.4;
+                            var fy1=-2.9;
+                            
+                            var fa10=-1.6;
+                            var fa1=-2.4;
+
+                            var g10_c=-1.9;
+                            var g1_c=-2.5;
+
+                            var h10_c=-0.8;
+                            var h1_c=-1.2;
+                            
+                            var i10_c=-0.7;
+                            var i1_c=-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa>15 && alfa<30) {
+                            
+                            var fy10=(((alfa-15)*(0.3))/15)-2.4;
+                            var fy1=-2.9;
+                            
+                            var fa10=(((alfa-15)*(0.3))/15)-1.6;
+                            var fa1=(((alfa-15)*(0.4))/15)-2.4;
+
+                            var g10_c=(((alfa-15)*(0.4))/15)-1.9;
+                            var g1_c=(((alfa-15)*(0.5))/15)-2.5;
+
+                            var h10_c=(((alfa-15)*(-0.2))/15)-0.8;
+                            var h1_c=(((alfa-15)*(-0.1))/15)-1.2;
+                            
+                            var i10_c=(((alfa-15)*(-0.1))/15)-0.7;
+                            var i1_c=-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa==30) {
+                            
+                            var fy10=-2.1;
+                            var fy1=-2.9;
+                            
+                            var fa10=-1.3;
+                            var fa1=-2;
+
+                            var g10_c=-1.5;
+                            var g1_c=-2;
+
+                            var h10_c=-1;
+                            var h1_c=-1.3;
+                            
+                            var i10_c=-0.8;
+                            var i1_c=-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa>30 && alfa<45) {
+                            
+                            var fy10=(((alfa-30)*(0.6))/15)-2.1;
+                            var fy1=(((alfa-30)*(0.5))/15)-2.9;
+                            
+                            var fa10=-1.3;
+                            var fa1=-2;
+
+                            var g10_c=(((alfa-30)*(0.1))/15)-1.5;
+                            var g1_c=-2;
+
+                            var h10_c=-1;
+                            var h1_c=-1.3;
+                            
+                            var i10_c=(((alfa-30)*(-0.1))/15)-0.8;
+                            var i1_c=-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa==45) {
+                            
+                            var fy10=-1.5;
+                            var fy1=-2.4;
+                            
+                            var fa10=-1.3;
+                            var fa1=-2;
+
+                            var g10_c=-1.4;
+                            var g1_c=-2;
+
+                            var h10_c=-1;
+                            var h1_c=-1.3;
+                            
+                            var i10_c=-0.9;
+                            var i1_c=-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa>45 && alfa<60) {
+                            
+                            var fy10=(((alfa-45)*(0.3))/15)-1.5;
+                            var fy1=(((alfa-45)*(0.4))/15)-2.4;
+                            
+                            var fa10=(((alfa-45)*(0.1))/15)-1.3;
+                            var fa1=-2;
+
+                            var g10_c=(((alfa-45)*(0.2))/15)-1.4;
+                            var g1_c=-2;
+
+                            var h10_c=-1;
+                            var h1_c=-1.3;
+                            
+                            var i10_c=(((alfa-45)*(0.2))/15)-0.9;
+                            var i1_c=-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        
+                        else if (alfa==60) {
+                            
+                            var fy10=-1.2;
+                            var fy1=-2;
+                            
+                            var fa10=-1.2;
+                            var fa1=-2;
+
+                            var g10_c=-1.2;
+                            var g1_c=-2;
+
+                            var h10_c=-1;
+                            var h1_c=-1.3;
+                            
+                            var i10_c=-0.7;
+                            var i1_c=-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa>60 && alfa<75) {
+                            
+                            var fy10=-1.2;
+                            var fy1=-2;
+                            
+                            var fa10=-1.2;
+                            var fa1=-2;
+
+                            var g10_c=-1.2;
+                            var g1_c=-2;
+
+                            var h10_c=-1;
+                            var h1_c=-1.3;
+                            
+                            var i10_c=(((alfa-60)*(0.2))/15)-0.7;
+                            var i1_c=(((alfa-60)*(0.7))/15)-1.2;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        else if (alfa>=75) {
+                            
+                            var fy10=-1.2;
+                            var fy1=-2;
+                            
+                            var fa10=-1.2;
+                            var fa1=-2;
+
+                            var g10_c=-1.2;
+                            var g1_c=-2;
+
+                            var h10_c=-1;
+                            var h1_c=-1.3;
+                            
+                            var i10_c=-0.5;
+                            var i1_c=-0.5;
+                            
+
+                            
+
+                            var f10_c=31693169;
+                            var f1_c=31693169;
+
+                            var f10_b=31693169;
+                            var f1_b=31693169;
+
+                            var g10_b=31693169;
+                            var g1_b=31693169;
+
+                            var h10_b=31693169;
+                            var h1_b=31693169;
+                            
+                            var i10_b=31693169;
+                            var i1_b=31693169;
+                            
+                        }
+                        
+                        
+                    }
+                        
+                    
+                        if (cpe==0) {
+                            
+                            var f11=f1_c;
+                            var f22=f1_b;
+                            var g11=g1_c;
+                            var g22=g1_b;
+                            var h11=h1_c;
+                            var h22=h1_b;
+                            var i11=i1_c;
+                            var i22=i1_b;
+                            var fyy=fy1;
+                            var faa=fa1;
+                            
+                        }
+                        
+                        else if (cpe==1) {
+                            
+                            var f11=f10_c;
+                            var f22=f10_b;
+                            var g11=g10_c;
+                            var g22=g10_b;
+                            var h11=h10_c;
+                            var h22=h10_b;
+                            var i11=i10_c;
+                            var i22=i10_b;
+                            var fyy=fy10;
+                            var faa=fa10;
+                            
+                        }
+                        
+                        
+                        var f1k=tepbas*f11;
+                        var f2k=tepbas*f22;
+                        var g1k=tepbas*g11;
+                        var g2k=tepbas*g22;
+                        var h1k=tepbas*h11;
+                        var h2k=tepbas*h22;
+                        var i1k=tepbas*i11;
+                        var i2k=tepbas*i22;
+                        var fyk=tepbas*fyy;
+                        var fak=tepbas*faa;
+                        
+                        var f2z=e*0.25;
+                        var g1z=bbb-e*0.5;
+                        var f1z=e*0.1;
+                        var h1z=ddd-e*0.1;
+                        var fyz=e*0.25;
+                        var faz=e*0.25;
+                        var g2z=ddd-e*0.5;
+                        var h2z=0.4*e;
+                        var iz=bbb-0.5*e;
+                        var f3z=0.1*e;
+                        
+                        
+                        
+                    
+                //Cikti ve Sartlar
+                        
+                        
+                        if (teta==0 || teta==2) {
+                            document.getElementById("f1z").value=f1z.toFixed(1);
+                            document.getElementById("f2z").value=f2z.toFixed(1);
+                            document.getElementById("f3z").value="-";
+                            document.getElementById("g1z").value=g1z.toFixed(1);
+                            document.getElementById("h1z").value=h1z.toFixed(1);
+                            
+                            document.getElementById("g2z").value="-";
+                            document.getElementById("h2z").value="-";
+                            document.getElementById("iz").value="-";
+                            document.getElementById("fyz").value="-";
+                            document.getElementById("faz").value="-";
+                            
+                        }
+                        
+                        else if (teta==1) {
+                            
+                            document.getElementById("f1z").value="-";
+                            document.getElementById("f2z").value="-";
+                            document.getElementById("f3z").value=f3z.toFixed(1);;
+                            document.getElementById("g1z").value="-";
+                            document.getElementById("h1z").value="-";
+                            
+                            document.getElementById("g2z").value=g2z.toFixed(1);
+                            document.getElementById("h2z").value=h2z.toFixed(1);
+                            document.getElementById("iz").value=iz.toFixed(1);
+                            document.getElementById("fyz").value=fyz.toFixed(1);
+                            document.getElementById("faz").value=faz.toFixed(1);
+                            
+                        }
+
+
+
+            
+                
+                document.getElementById("tepebas").value=tepbas.toFixed(1);
+                document.getElementById("vmm").value=vm.toFixed(1);   
+                        
+                        
+                        if (f1k==tepbas*31693169) {
+                            document.getElementById("f1").value="-";
+                        }
+                        
+                        else if (f1k!=tepbas*31693169) {
+                             document.getElementById("f1").value=f1k.toFixed(1);
+                        }
+                        
+                        
+                        if (f2k==tepbas*31693169) {
+                            document.getElementById("f2").value="-";
+                        }
+                        
+                        else if (f2k!=tepbas*31693169) {
+                             document.getElementById("f2").value=f2k.toFixed(1);
+                        }
+                        
+                        
+                        if (g1k==tepbas*31693169) {
+                            document.getElementById("g1").value="-";
+                        }
+                        
+                        else if (g1k!=tepbas*31693169) {
+                             document.getElementById("g1").value=g1k.toFixed(1);
+                        }
+                        
+                        
+                        
+                        if (g2k==tepbas*31693169) {
+                            document.getElementById("g2").value="-";
+                        }
+                        
+                        else if (g2k!=tepbas*31693169) {
+                             document.getElementById("g2").value=g2k.toFixed(1);
+                        }
+                        
+                        
+                        
+                        if (h1k==tepbas*31693169) {
+                            document.getElementById("h1").value="-";
+                        }
+                        
+                        else if (h1k!=tepbas*31693169) {
+                             document.getElementById("h1").value=h1k.toFixed(1);
+                        }
+                        
+                        
+                        
+                        if (h2k==tepbas*31693169) {
+                            document.getElementById("h2").value="-";
+                        }
+                        
+                        else if (h2k!=tepbas*31693169) {
+                             document.getElementById("h2").value=h2k.toFixed(1);
+                        }
+                        
+                        
+                        
+                        if (i1k==tepbas*31693169) {
+                            document.getElementById("i1").value="-";
+                        }
+                        
+                        else if (i1k!=tepbas*31693169) {
+                             document.getElementById("i1").value=i1k.toFixed(1);
+                        }
+                        
+                        
+                         if (i2k==tepbas*31693169) {
+                            document.getElementById("i2").value="-";
+                        }
+                        
+                        else if (i2k!=tepbas*31693169) {
+                             document.getElementById("i2").value=i2k.toFixed(1);
+                        }
+                        
+                        
+                        if (fyk==tepbas*31693169) {
+                            document.getElementById("fyk").value="-";
+                        }
+                        
+                        else if (fyk!=tepbas*31693169) {
+                             document.getElementById("fyk").value=fyk.toFixed(1);
+                        }
+                        
+                        
+                        
+                        if (fak==tepbas*31693169) {
+                            document.getElementById("fak").value="-";
+                        }
+                        
+                        else if (fak!=tepbas*31693169) {
+                             document.getElementById("fak").value=fak.toFixed(1);
+                        }
+                        
+                        
+                
+               
+                    
+                
+               
+  
+                    
+                }}
+
+                </script>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--RESULTS-->
+        <br>
+        <div class="container">
+            <div class="row" mt-4 mb-3>
+                <b class="h4" style="margin-left: auto; margin-right: auto;" style="color:darkred">SONUÇLAR</b>
+            </div>
+        </div>
+        <br>
+        <br>
+        
+      
+        
+        <div class="container">
+            <table class="table table-striped table-bordered">
+            <tbody>
+          <tr>
+        <td id="on">Ortalama Rüzgar Hızı (m/sn)</td>
+        <td id="off2" colspan="2"><output id="vmm" readonly=""></output></td>
+        </tr>
+                
+                          <tr>
+        <td id="on">Tepe Rüzgar Basıncı (kg/m<sup>2</sup>)</td>
+        <td id="off2" colspan="2"><output id="tepebas" readonly=""></output></td>
+        </tr>
+           
+                </tbody></table>
+             <br>
+            <br>
+            <br>
+        </div>
+        
+
+        
+        <div class="container">
+
+
+        <table class="table text-center table-striped table-bordered">
+
+        <tbody>
+<tr>
+        <td id="on"></td>
+        <td id="off2">Bölge Basıncı (kg/m<sup>2</sup>)</td>
+        </tr>
+            
+
+            
+            <tr>  
+        <td id="on">F Bölgesi</td>
+        <td id="off2"><output id="f1" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">F Bölgesi<sup>*</sup></td>
+        <td id="off2"><output id="f2" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">G Bölgesi</td>
+        <td id="off2"><output id="g1" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">G Bölgesi<sup>*</sup></td>
+        <td id="off2"><output id="g2" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">H Bölgesi</td>
+        <td id="off2"><output id="h1" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">H Bölgesi<sup>*</sup></td>
+        <td id="off2"><output id="h2" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">I Bölgesi</td>
+        <td id="off2"><output id="i1" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">I Bölgesi<sup>*</sup></td>
+        <td id="off2"><output id="i2" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">F<sub>yüksek</sub> Bölgesi</td>
+        <td id="off2"><output id="fyk" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">F<sub>alçak</sub> Bölgesi</td>
+        <td id="off2"><output id="fak" readonly=""></output></td>
+        </tr>
+            
+         
+
+        
+
+
+        </tbody></table>
+        <br><br>
+            
+            
+            <table class="table text-center table-striped table-bordered">
+
+        <tbody>
+<tr>
+        <td id="on"></td>
+        <td id="off2">Bölge Boyu (m)</td>
+        </tr>
+            
+
+            
+            <tr>  
+        <td id="on">f<sub>1</sub></td>
+        <td id="off2"><output id="f1z" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">f<sub>2</sub></td>
+        <td id="off2"><output id="f2z" readonly=""></output></td>
+        </tr>
+            
+            <tr>  
+        <td id="on">f<sub>3</sub></td>
+        <td id="off2"><output id="f3z" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">g<sub>1</sub></td>
+        <td id="off2"><output id="g1z" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">g<sub>2</sub></td>
+        <td id="off2"><output id="g2z" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">h<sub>1</sub></td>
+        <td id="off2"><output id="h1z" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">h<sub>2</sub></td>
+        <td id="off2"><output id="h2z" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">i</td>
+        <td id="off2"><output id="iz" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">f<sub>y</sub></td>
+        <td id="off2"><output id="fyz" readonly=""></output></td>
+        </tr>
+            
+             <tr>  
+        <td id="on">f<sub>a</sub></td>
+        <td id="off2"><output id="faz" readonly=""></output></td>
+        </tr>
+          
+         
+
+        
+
+
+        </tbody></table>
+        <br><br><br>
+        
+            <table class="table text-center">
+
+        <tbody>
+<tr>
+        <td id="on">*Basınç, θ = 0 için eğim açısının α = +5 ile +45 arasındaki
+değerlerinde pozitif ve negatif değerler arasında hızlı bir şekilde değişir. Bu
+nedenle pozitif ve negatif değerlerin her ikisi de verilmiştir. Bu tür çatılar için
+tüm pozitif değerlerin ve tüm negatif değerlerin göz önüne alındığı 2 durum
+vardır. Aynı yüzey için pozitif ve negatif değerlerin birarada kullanılmasına
+izin verilmez.</td>
+
+        </tr>
+            
+            <tr>
+        <td id="on"> Kaynak : TS EN 1991-1-4</td>
+
+        </tr>
+     
+
+        
+
+
+        </tbody></table>
+            <br><br>
+        
+        <script src="popper.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <script src="bootstrap.js"></script>
+        <script src="bootstrap-tooltip.js"></script>
+        <script src="fontawesome.min.js"></script>
+        
+        </div>
+                
+        
+    </body>
+</html>

@@ -1,0 +1,105 @@
+#mapid { height: 180px; }
+
+
+
+b {
+    
+  
+    padding-left: 0;
+    color:darkred;
+    height: 100%;
+    
+}
+
+
+.navbar-brand {
+    width: 30px;
+    height;30px;
+    color:white;
+}
+
+.navbar {
+    background-color: #3a3131;
+    color:white;
+}
+
+.nav-link {
+    color:white;
+    text-align: center;
+}
+
+.active:hover {
+    color:white;
+}
+
+.nav-link:hover {
+    color: lightgray;
+}
+
+.active {
+    background-color:darkred;
+    border-radius:5px;
+}
+
+.navbar-toggler-icon {
+    background-image: url(../images/menu.svg);
+}
+
+.navbar-toggler {
+    background-color: darkred;
+    border-radius:5px;
+}
+
+.custom-select {
+    padding: auto;
+    height:100%;
+}
+
+
+
+.custom-select{
+    width:75%;
+}
+
+.info {
+    width: 35px;
+    margin-left: 5px;
+}
+
+.form-control {
+    width:75%;
+}
+
+
+.btn-outline-secondary {
+    background-color: gray;
+    color:white;
+}
+
+.btn-outline-secondary:hover {
+    background-color: darkred;
+    color:white;
+}
+
+.container {
+    max-width:640px;
+}
+
+.modal{
+    width: 95%;
+    padding-left:auto;
+    padding-right: auto;
+}
+
+.modal-body {
+    margin-left:auto;
+    margin-right: auto;
+    padding-left:auto;
+    padding-right: auto;
+}
+
+
+#butonasik {
+    width:50%; 
+    max-width: 320px;
+}
