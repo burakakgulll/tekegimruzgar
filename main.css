@@ -12,43 +12,44 @@ b {
 }
 
 
-.navbar-brand {
-    width: 30px;
-    height;30px;
+
+#bg-light{
+    background-color:darkred !important;
+
+}
+
+.dropdown-menu {
+    background-color:darkred!important;
+    color:white;
+    border:none;
+
+}
+
+#navbarNavDropdown {
+    float:right;
+}
+
+
+
+#navbeyaz {
     color:white;
 }
 
-.navbar {
-    background-color: #3a3131;
-    color:white;
-}
-
-.nav-link {
-    color:white;
-    text-align: center;
-}
-
-.active:hover {
-    color:white;
-}
-
-.nav-link:hover {
-    color: lightgray;
+#navbeyaz:hover {
+    background-color:black;
+    border-radius:6px;
 }
 
 .active {
-    background-color:darkred;
-    border-radius:5px;
+    background-color:black !important;
+    border-radius:6px;
 }
 
-.navbar-toggler-icon {
-    background-image: url(../images/menu.svg);
+#navbar-brand {
+    color:white;
 }
 
-.navbar-toggler {
-    background-color: darkred;
-    border-radius:5px;
-}
+
 
 .custom-select {
     padding: auto;
